@@ -12,6 +12,31 @@ let fastest = null;
 let totalTime = 0;
 let rounds = 0;
 
+function suffix(day){
+    if(day >= 11 && day <= 13)
+        return "th";
+    if(day % 10 === 1)
+        return "st";
+    if (day % 10 === 2)
+        return "nd";
+    if (day % 10 === 3)
+        return "rd";
+    return "th";
+}
+
+function time(){
+    let d = new Date();
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    let month = months[d.getMonth()];
+    let day = d.getDate();
+    let year = d.getFullYear();
+    let h = d.getHours();
+    let m = String(d.getMinutes()).padStart(2, "0");
+    let s = String(d.getSeconds()).padStart(2, "0");
+    return  month + " " + day + suffix(day) + " " + year + ", " + h + ":" + m + ":" + s;
+}
+
 document.getElementById("playBtn").addEventListener("click", play);
 document.getElementById("guessBtn").addEventListener("click", makeGuess);
 document.getElementById("giveUpBtn").addEventListener("click", giveUp);
@@ -112,6 +137,14 @@ document.getElementById("date").textContent = time();
     document.getElementById("avgTime").textContent = "Average Time: " + (totalTime / rounds).toFixed(2);
         
 
+    }
+
+    function giveUp(){
+        document.getElementById("msg").textContent = player + " gave up";
+
+        updateScore(guessCount);
+        updateTimers(new Date().getTime());
+        resetGame();
     }
 
     function resetGame(){
