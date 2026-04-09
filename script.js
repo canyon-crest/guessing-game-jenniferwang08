@@ -3,6 +3,7 @@ let player= prompt("Enter your name");
 player = player.charAt(0).toUpperCase() + player.slice(1).toLowerCase();
 
 let guess = 0;
+let range = 0;
 let answer = 0;
 let guessCount = 0;
 //let totalWins = 0;
@@ -43,7 +44,7 @@ document.getElementById("giveUpBtn").addEventListener("click", giveUp);
 
 
 function play(){
-    let range = 0;
+    //let range = 0;
     let levels = document.getElementsByName("level");
     for(let i = 0; i < levels.length; i++){
         if(levels[i].checked){
@@ -142,7 +143,7 @@ document.getElementById("date").textContent = time();
     function giveUp(){
         document.getElementById("msg").textContent = player + " gave up";
 
-        updateScore(guessCount);
+        updateScore(range);
         updateTimers(new Date().getTime());
         resetGame();
     }
