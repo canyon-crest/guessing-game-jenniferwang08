@@ -27,7 +27,7 @@ function play(){
         levels[i].disabled = true;
     }
 
-    document.getElementById("msg").textContent = "Guess a number 1-" + range;
+    document.getElementById("msg").textContent = player + ", Guess a number 1-" + range;
     answer = Math.floor(Math.random()*range)+1;
     guessCount = 0;
 
@@ -59,17 +59,17 @@ function makeGuess(){
     }
 
     if(guess == answer){
-        msg.textContent = "Correct! It took " + guessCount + " tries.";
+        msg.textContent = player + ", Correct! It took " + guessCount + " tries.";
          updateScore(guessCount);
          updateTimers(new Date().getTime());
          resetGame();
     }
     else if(guess < answer){
-        msg.textContent = "Too low " + temp + ", try again";
+        msg.textContent = player + ", Too low " + temp + ", try again";
     }
 
     else{
-        msg.textContent = "Too high " + temp + ", try again";
+        msg.textContent = player + ", Too high " + temp + ", try again";
     }
     }
 
@@ -93,6 +93,7 @@ function makeGuess(){
         }
     }
 
+document.getElementById("date").textContent = time();
 
     
     setInterval(function() {
