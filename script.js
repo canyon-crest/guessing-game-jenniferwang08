@@ -1,12 +1,20 @@
 // add javascript here
+let player= prompt("Enter your name");
+player = player.charAt(0).toUpperCase() + player.slice(1).toLowerCase();
+
 let guess = 0;
 let answer = 0;
 let guessCount = 0;
 //let totalWins = 0;
 const scores = [];
+let startTime = 0;
+let fastest = null;
+let totalTime = 0;
+let rounds = 0;
 
 document.getElementById("playBtn").addEventListener("click", play);
 document.getElementById("guessBtn").addEventListener("click", makeGuess);
+document.getElementById("giveUpBtn").addEventListener("click", giveUp);
 
 
 function play(){
@@ -27,6 +35,8 @@ function play(){
     giveUpBtn.disabled = false;
     playBtn.disabled = true;
 
+    startTime = new Date().getTime();
+
 }
 
 function makeGuess(){
@@ -36,17 +46,30 @@ function makeGuess(){
         return;
     }
     guessCount++;
+    let diff = Math.abs(guess - answer);
+    let temp = "";
+    if(diff <= 2){
+        temp = "hot";
+    }
+    else if(diff <=5){
+        temp = "warm";
+    }
+    else{
+        temp = "cold";
+    }
+
     if(guess == answer){
         msg.textContent = "Correct! It took " + guessCount + " tries.";
          updateScore(guessCount);
+         updateTimers(new Date().getTime());
          resetGame();
     }
     else if(guess < answer){
-        msg.textContent = "Too low, try again";
+        msg.textContent = "Too low " + temp + ", try again";
     }
 
     else{
-        msg.textContent = "Too high, try again.";
+        msg.textContent = "Too high " + temp + ", try again";
     }
     }
 
@@ -69,6 +92,27 @@ function makeGuess(){
             }
         }
     }
+
+
+    
+    setInterval(function() {
+        document.getElementById("date").textContent = time();
+    }, 1000);
+
+    function updateTimers(end){
+        let t = (end - startTime)/1000;
+        rounds++;
+        totalTime += t;
+        if(fastest === null || t < fastest){
+            fastest = t;
+
+        }
+    document.getElementById("fastest").textContent = "Fastest Game: " + fastest.toFixed(2);
+    document.getElementById("avgTime").textContent = "Average Time: " + (totalTime / rounds).toFixed(2);
+        
+
+    }
+
     function resetGame(){
         guess.value = "";
         guessBtn.disabled = true;
