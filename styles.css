@@ -1,0 +1,19 @@
+body{background-color:rgb(234, 246, 255);
+    color:rgb(64, 41, 168);
+font-family:Verdana, Geneva, Tahoma, sans-serif}
+
+button {
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: rgb(255, 227, 234);
+}
+
+.dark {
+    background-color: black;
+    color: white;
+}

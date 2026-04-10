@@ -86,6 +86,24 @@ function makeGuess(){
 
     if(guess == answer){
         msg.textContent = player + ", Correct! It took " + guessCount + " tries.";
+            
+    let feedback = "";
+
+    if (guessCount === 1) {
+        feedback = " Phenomenal!";
+    } 
+    else if (guessCount <= 3) {
+        feedback = " Amazing job!";
+    } 
+    else if (guessCount <= 5) {
+        feedback = " Great work!";
+    } 
+    else {
+        feedback = " Keep going!";
+    }
+
+    msg.textContent += feedback;
+
          updateScore(guessCount);
          updateTimers(new Date().getTime());
          resetGame();
@@ -158,8 +176,6 @@ document.getElementById("date").textContent = time();
         m.disabled = false;
     }
 
-
-
-
-
-
+    document.getElementById("darkBtn").addEventListener("click", function(){
+    document.body.classList.toggle("dark");
+});
