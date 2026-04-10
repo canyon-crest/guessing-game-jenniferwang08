@@ -1,6 +1,7 @@
-body{background-color:rgb(234, 246, 255);
+body{background-color:rgb(235, 243, 255);
     color:rgb(64, 41, 168);
 font-family:Verdana, Geneva, Tahoma, sans-serif}
+
 
 button {
     background-color:azure;
@@ -14,7 +15,9 @@ button:hover {
     background-color: rgb(255, 227, 234);
 }
 
+
 .dark {
     background-color: black;
     color: white;
 }
+

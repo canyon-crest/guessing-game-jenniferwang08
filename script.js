@@ -101,7 +101,6 @@ function makeGuess(){
     else {
         feedback = " Keep going!";
     }
-
     msg.textContent += feedback;
 
          updateScore(guessCount);
@@ -178,4 +177,10 @@ document.getElementById("date").textContent = time();
 
     document.getElementById("darkBtn").addEventListener("click", function(){
     document.body.classList.toggle("dark");
+});
+
+document.getElementById("guess").addEventListener("keypress", function(e){
+    if (e.key === "Enter") {
+        makeGuess();
+    }
 });
