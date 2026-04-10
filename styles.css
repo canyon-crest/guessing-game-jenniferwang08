@@ -3,6 +3,7 @@ body{background-color:rgb(234, 246, 255);
 font-family:Verdana, Geneva, Tahoma, sans-serif}
 
 button {
+    background-color:azure;
     padding: 10px;
     border-radius: 8px;
     transition: 0.3s;
